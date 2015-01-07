@@ -1,0 +1,12 @@
+{
+  "name": "duo-search",
+  "version": "0.0.1",
+  "description": "Duo command to search Github for modules: duo search <keyword>",
+  "bin": {
+    "search": "search"
+  },
+  "dependencies": {
+    "request": "^2.51.0",
+    "node-netrc": "0.0.1"
+  }
+}
