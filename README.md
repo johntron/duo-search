@@ -8,10 +8,23 @@ Duo command to search Github for modules: `duo search <keyword>`
 npm install -g duo-search
 ```
 
-## Usage
+## Usage (CLI)
 ```sh
 duo search <keyword>
 ```
+
+## Usage (API)
+```JavaScript
+var search = require('duo-search'),
+	request = require('request');
+
+search('something awesome', request, github_token, function (results, raw, response) {
+	console.info('Results:', results);
+	console.info('Response body (api.github.com):', raw);
+	console.info('Response object:', response);
+});
+```
+In a browser, wrap some AJAX library in a function compatible with (request/request)[https://github.com/request/request] and pass this as the `request` parameter.
 
 ## License
 

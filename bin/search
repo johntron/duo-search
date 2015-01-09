@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+var search = require('..'),
+	keyword = process.argv[2],
+	request = require('request'),
+	status_codes = require('http').STATUS_CODES,
+	netrc = require('node-netrc'),
+	auth = netrc('api.github.com') || {login: process.env.GH_TOKEN};
+
+function error() {
+	arguments = ['duo-search'].concat(arguments);
+	console.error.apply(console, arguments);
+}
+
+try {
+	search(keyword, require('request'), auth.login, function (results) {
+		results.filter(function (i) {
+			return i.private === false;
+		}).forEach(function (i) {
+			console.log(i.full_name + ':');
+			console.log('  ' + i.description);
+			console.log();
+		});
+	});
+} catch (e) {
+	if (e.statusCode) {
+		error(e, status_codes[e.statusCode]);
+		process.exit(1);
+	}
+	
+	error(e, 'Are you connected to the internet?');
+}
