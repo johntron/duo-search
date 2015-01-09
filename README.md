@@ -1,4 +1,4 @@
-[![npm](https://img.shields.io/npm/v/duo-search.svg)]()
+[![npm](https://img.shields.io/npm/v/duo-search.svg)](https://www.npmjs.com/package/duo-search)
 
 # duo-search
 Duo command to search Github for modules: `duo search <keyword>`
