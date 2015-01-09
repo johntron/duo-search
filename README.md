@@ -24,7 +24,7 @@ search('something awesome', request, github_token, function (results, raw, respo
 	console.info('Response object:', response);
 });
 ```
-In a browser, wrap some AJAX library in a function compatible with (request/request)[https://github.com/request/request] and pass this as the `request` parameter.
+In a browser, wrap some AJAX library in a function compatible with [request/request](https://github.com/request/request) and pass this as the `request` parameter.
 
 ## License
 
