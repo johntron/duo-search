@@ -7,6 +7,11 @@ var search = require('..'),
 	netrc = require('node-netrc'),
 	auth = netrc('api.github.com') || {login: process.env.GH_TOKEN};
 
+if (!keyword) {
+	console.error('Error: keyword required.');
+	process.exit(1);
+}
+
 function error() {
 	arguments = ['duo-search'].concat(arguments);
 	console.error.apply(console, arguments);
@@ -27,6 +32,6 @@ try {
 		error(e, status_codes[e.statusCode]);
 		process.exit(1);
 	}
-	
+
 	error(e, 'Are you connected to the internet?');
 }
