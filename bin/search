@@ -8,6 +8,11 @@ var search = require('..'),
 	auth = netrc('api.github.com') || {password: process.env.GH_TOKEN},
 	password = auth.password === 'x-oauth-basic' ? auth.login : auth.password;
 
+if (!keyword) {
+	console.error('Error: keyword required.');
+	process.exit(1);
+}
+
 function error() {
 	arguments = ['duo-search'].concat(arguments);
 	console.error.apply(console, arguments);
@@ -28,6 +33,6 @@ try {
 		error(e, status_codes[e.statusCode]);
 		process.exit(1);
 	}
-	
+
 	error(e, 'Are you connected to the internet?');
 }
