@@ -5,7 +5,8 @@ var search = require('..'),
 	request = require('request'),
 	status_codes = require('http').STATUS_CODES,
 	netrc = require('node-netrc'),
-	auth = netrc('api.github.com') || {login: process.env.GH_TOKEN};
+	auth = netrc('api.github.com') || {password: process.env.GH_TOKEN},
+	password = auth.password === 'x-oauth-basic' ? auth.login : auth.password;
 
 function error() {
 	arguments = ['duo-search'].concat(arguments);
@@ -13,7 +14,7 @@ function error() {
 }
 
 try {
-	search(keyword, require('request'), auth.login, function (results) {
+	search(keyword, request, password, function (results) {
 		results.filter(function (i) {
 			return i.private === false;
 		}).forEach(function (i) {
